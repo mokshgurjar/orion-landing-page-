@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Orion — Landing Page
 
-## Getting Started
+Production-ready Next.js landing page for Orion IDE, the world's first deterministic AI code editor. Migrated from a single `index.html` into a fully typed, component-based architecture with Tailwind CSS, Framer Motion animations, and static export.
 
-First, run the development server:
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.local.example .env.local   # fill in values
+npm run dev                         # → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Push to GitHub → import to [Vercel](https://vercel.com) → add env vars in dashboard → deploy. The project uses `output: 'export'` for static hosting on any CDN.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Plausible analytics domain |
+| `NEXT_PUBLIC_DOWNLOAD_URL_MAC` | macOS download URL |
+| `NEXT_PUBLIC_DOWNLOAD_URL_WIN` | Windows download URL |
+| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX` | Linux download URL |
+| `NEXT_PUBLIC_APP_VERSION` | Version shown in hero (default: v2.0.1) |
 
-To learn more about Next.js, take a look at the following resources:
+## Folder Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+orion/
+├── app/              # Next.js App Router pages + layout
+├── components/
+│   ├── layout/       # Nav, Footer
+│   ├── sections/     # Hero, Download, TrustStrip, Features, Reasons, Pipeline, Validation, Compare, Quote
+│   └── ui/           # Button, FeatureCard, PipelineStep, ValidationLayer, GrainOverlay, CursorWrapper, etc.
+├── hooks/            # useCursor
+├── lib/              # data.ts (all static content)
+├── types/            # TypeScript interfaces
+└── public/           # Static assets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How to Update
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Version number**: Change `NEXT_PUBLIC_APP_VERSION` in `.env.local`
+- **Download URLs**: Update `NEXT_PUBLIC_DOWNLOAD_URL_*` env vars
+- **Content**: Edit `lib/data.ts`
+- **Blog posts**: Add pages to `app/blog/` (MDX-ready structure)

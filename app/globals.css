@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* ═══ Background ═══ */
+  --color-bg: #080404;
+  --color-bg-2: #0e0606;
+  --color-bg-card: #110707;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* ═══ Red palette ═══ */
+  --color-red-core: #c0282a;
+  --color-red-bright: #e53030;
+  --color-red-deep: #7a1a1a;
+  --color-red-muted: #3d1212;
+  --color-red-dim: #1e0a0a;
+
+  /* ═══ Text ═══ */
+  --color-text-DEFAULT: #f0e8e8;
+  --color-text-mid: #9a8080;
+  --color-text-low: #4a3535;
+
+  /* ═══ Border ═══ */
+  --color-border-DEFAULT: #2a1414;
+  --color-border-red: #4a1f1f;
+
+  /* ═══ Fonts ═══ */
+  --font-display: var(--font-cormorant), serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* ═══ Animations ═══ */
+  --animate-pulse-glow: pulse-glow 2.5s ease-in-out infinite;
+  --animate-blink: blink 1.5s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 4s ease-in-out infinite;
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(229, 48, 48, 0.2), 0 0 60px rgba(229, 48, 48, 0.08);
+    }
+
+    50% {
+      box-shadow: 0 0 30px rgba(229, 48, 48, 0.4), 0 0 80px rgba(229, 48, 48, 0.15);
+    }
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes glow-pulse {
+
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: translate(-50%, -55%) scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -55%) scale(1.08);
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-DEFAULT);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a {
+  cursor: none;
+}
+
+button {
+  cursor: none;
+}
+
+::selection {
+  background: var(--color-red-core);
+  color: var(--color-text-DEFAULT);
+}
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
 }
