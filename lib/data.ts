@@ -72,6 +72,18 @@ export const FEATURES: Feature[] = [
         desc: 'Every decision every agent makes is logged, timestamped, and explainable. You can inspect the full reasoning chain behind every file change. Compliance-ready from day one.',
         vs: 'Others → black-box agent decisions',
     },
+    {
+        tag: 'Unique to Orion',
+        title: 'Planning Mode vs Fast Mode',
+        desc: 'Planning Mode runs all 15 pipeline stages with full 6-layer validation, parallel agents, and IISG contracts. Fast Mode runs a 6-stage condensed pipeline in 4–10 seconds with a lighter model. You choose the mode. Orion never auto-switches.',
+        vs: 'Others → one fixed execution path, no user-controlled mode switch',
+    },
+    {
+        tag: 'Unique to Orion',
+        title: 'MCP Inside the Pipeline',
+        desc: 'MCP tool calls are formally dispatched through a dedicated MCP Dispatcher with per-agent tool isolation, rollback-awareness, and full auditability. Tool calls are planned in the IISG contract and user-approved before any external system is touched.',
+        vs: 'Antigravity + Claude Code → MCP is not integrated into the AI execution pipeline',
+    },
 ]
 
 export const COMPARISON_COLS = ['Orion', 'Antigravity', 'Cursor', 'Windsurf', 'Claude Code'] as const
@@ -110,7 +122,7 @@ export const STATS: Stat[] = [
 ]
 
 export const TRUST_FACTS: TrustFact[] = [
-    'Deterministic output',
+    'MCP Pipeline-Integrated',
     '6-layer validation',
     'Atomic rollback',
     'Pre-execution cost preview',

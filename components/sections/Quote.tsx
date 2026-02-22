@@ -9,6 +9,8 @@ import { motion } from 'framer-motion'
 // .quote-attribution: mono, 12px, text-low, mb 40px, relative z-1
 // btn-ghost: inline-flex, align-items center, gap 8px, padding 14px 32px, border 1px red-core, color red-bright, mono, 13px, uppercase, tracking 0.06em, pill
 
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button'
+
 export default function Quote() {
     return (
         <section className="text-center py-[140px] px-[20px] relative overflow-hidden">
@@ -30,13 +32,14 @@ export default function Quote() {
                     — Early access developer, YC W25
                 </p>
 
-                {/* btn-ghost: inline-flex, gap 8px, padding 14px 32px, border 1px red-core, red-bright, mono, 13px, uppercase, tracking 0.06em, pill */}
-                <a
-                    href="#download"
-                    className="inline-flex items-center gap-[8px] px-[32px] py-[14px] border border-red-core text-red-bright font-mono text-[13px] uppercase tracking-[0.06em] rounded-full transition-all duration-300 hover:bg-red-core hover:text-text-DEFAULT"
-                >
-                    Get early access →
-                </a>
+                {/* Interactive Hover Button matching the site typography */}
+                <InteractiveHoverButton
+                    text="Get early access"
+                    className="w-auto px-8 py-[14px] border-red-core text-red-bright font-mono text-[13px] uppercase tracking-[0.06em] bg-transparent hover:border-transparent hover:text-text-DEFAULT"
+                    onClick={() => {
+                        window.location.href = '#download'
+                    }}
+                />
             </motion.div>
         </section>
     )

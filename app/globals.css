@@ -22,6 +22,12 @@
   --color-border-DEFAULT: #2a1414;
   --color-border-red: #4a1f1f;
 
+  /* ═══ Shadcn Mapping ═══ */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text-DEFAULT);
+  --color-primary: var(--color-red-core);
+  --color-primary-foreground: var(--color-text-DEFAULT);
+
   /* ═══ Fonts ═══ */
   --font-display: var(--font-cormorant), serif;
   --font-mono: var(--font-geist-mono), monospace;

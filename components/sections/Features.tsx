@@ -2,8 +2,7 @@
 
 import SectionEyebrow from '@/components/ui/SectionEyebrow'
 import SectionTitle from '@/components/ui/SectionTitle'
-import FeatureCard from '@/components/ui/FeatureCard'
-import { FEATURES } from '@/lib/data'
+import InteractiveFeatureGrid from '@/components/ui/interactive-feature-grid'
 
 export default function Features() {
     return (
@@ -15,22 +14,11 @@ export default function Features() {
 
                 <SectionEyebrow>What makes Orion different</SectionEyebrow>
 
-                <SectionTitle subtitle="After studying Cursor, Windsurf, Antigravity, and PearAI — these properties exist only in Orion.">
+                <SectionTitle subtitle="After studying Cursor, Windsurf, Antigravity, and Claude Code — these properties exist only in Orion.">
                     Capabilities no other IDE has built.
                 </SectionTitle>
 
-                {/* .features-grid: 2-col, gap 24px */}
-                <div
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '24px',
-                    }}
-                >
-                    {FEATURES.map((feature) => (
-                        <FeatureCard key={feature.title} feature={feature} />
-                    ))}
-                </div>
+                <InteractiveFeatureGrid />
 
             </div>
         </section>

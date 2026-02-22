@@ -16,52 +16,21 @@ const envUrlMap: Record<string, string | undefined> = {
     Linux: process.env.NEXT_PUBLIC_DOWNLOAD_URL_LINUX,
 }
 
+import HighlightCard from '@/components/ui/highlight-card'
+
 function DownloadCard({ platform }: { platform: typeof PLATFORMS[number] }) {
-    const [hovered, setHovered] = useState(false)
     const [btnHovered, setBtnHovered] = useState(false)
     const icon = iconMap[platform.os] || '⬡'
     const downloadUrl = envUrlMap[platform.os] || '#'
 
     return (
-        <div
-            style={{
-                background: 'var(--color-bg-card)',
-                border: `1px solid ${hovered ? 'var(--color-border-red)' : platform.featured ? 'var(--color-border-red)' : 'var(--color-border-DEFAULT)'}`,
-                padding: '40px 28px',
-                textAlign: 'center',
-                transition: 'transform 0.3s, box-shadow 0.3s, border-color 0.3s',
-                transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
-                boxShadow: hovered ? '0 -4px 30px rgba(229, 48, 48, 0.08)' : 'none',
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+        <HighlightCard
+            title={platform.os}
+            description={[
+                `${platform.version} · ${platform.arch} · ${platform.size}`
+            ]}
+            icon={<span style={{ fontSize: '36px', color: 'var(--color-text-DEFAULT)' }}>{icon}</span>}
         >
-            {/* .os-icon */}
-            <span style={{ fontSize: '36px', marginBottom: '16px', display: 'block' }}>
-                {icon}
-            </span>
-
-            {/* .os-name */}
-            <div style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '24px',
-                fontWeight: 300,
-                marginBottom: '8px',
-            }}>
-                {platform.os}
-            </div>
-
-            {/* .os-meta */}
-            <div style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '11px',
-                color: 'var(--color-text-low)',
-                marginBottom: '28px',
-            }}>
-                {platform.version} · {platform.arch} · {platform.size}
-            </div>
-
-            {/* .download-btn */}
             <a
                 href={downloadUrl}
                 style={{
@@ -79,13 +48,15 @@ function DownloadCard({ platform }: { platform: typeof PLATFORMS[number] }) {
                     borderRadius: '100px',
                     textDecoration: 'none',
                     boxSizing: 'border-box',
+                    position: 'relative',
+                    zIndex: 30, // Make sure download button is clickable over highlights
                 }}
                 onMouseEnter={() => setBtnHovered(true)}
                 onMouseLeave={() => setBtnHovered(false)}
             >
                 Download
             </a>
-        </div>
+        </HighlightCard>
     )
 }
 
