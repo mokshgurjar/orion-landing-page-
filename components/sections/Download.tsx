@@ -6,9 +6,9 @@ import SectionEyebrow from '@/components/ui/SectionEyebrow'
 import Image from 'next/image'
 
 const iconMap: Record<string, React.ReactNode> = {
-    Windows: <Image src="/microsoft.png" alt="Windows Logo" width={40} height={40} className="object-contain p-2.5 w-full h-full brightness-0 invert" />,
-    macOS: <Image src="/apple-logo.png" alt="Apple Logo" width={40} height={40} className="object-contain p-1 w-full h-full brightness-0 invert" />,
-    Linux: <Image src="/linux.png" alt="Linux Logo" width={40} height={40} className="object-contain w-full h-full brightness-0 invert" />,
+    Windows: <Image src="/microsoft.png" alt="Windows" width={40} height={40} className="object-contain p-2.5 w-full h-full brightness-0 invert" />,
+    macOS: <Image src="/apple-logo.png" alt="Apple" width={40} height={40} className="object-contain p-1 w-full h-full brightness-0 invert" />,
+    Linux: <Image src="/linux.png" alt="Linux" width={40} height={40} className="object-contain w-full h-full brightness-0 invert" />,
 }
 
 const envUrlMap: Record<string, string | undefined> = {
@@ -21,7 +21,7 @@ import HighlightCard from '@/components/ui/highlight-card'
 
 function DownloadCard({ platform }: { platform: typeof PLATFORMS[number] }) {
     const [btnHovered, setBtnHovered] = useState(false)
-    const icon = iconMap[platform.os] || <Image src="/linux.png" alt="Linux Logo" width={40} height={40} className="object-contain w-full h-full brightness-0 invert" />
+    const icon = iconMap[platform.os] || <Image src="/linux.png" alt="Linux" width={40} height={40} className="object-contain w-full h-full brightness-0 invert" />
     const downloadUrl = envUrlMap[platform.os] || '#'
 
     return (

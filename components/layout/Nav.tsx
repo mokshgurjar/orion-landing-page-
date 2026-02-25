@@ -16,19 +16,28 @@ export default function Nav() {
             setScrolled(window.scrollY > 60)
             
             // ScrollSpy logic mapping refs to sections
-            const sections = NAV_LINKS.map(link => link.href.substring(1)); // e.g. 'features', 'pipeline', etc
+            const navSections = NAV_LINKS.map(link => link.href.substring(1)).filter(Boolean); // e.g. 'features', 'pipeline', etc
+            const extraSections = ['execution-modes', 'mcp'];
+            const allSections = [...navSections, ...extraSections];
+            
             let maxTop = -Infinity;
             let currentTab: NavLabel | null = null;
 
-            for (const section of sections) {
+            for (const section of allSections) {
                 const element = document.getElementById(section);
                 if (element) {
                     // Find the section whose top is closest to the 300px threshold (without going strictly below it).
                     const rect = element.getBoundingClientRect();
                     if (rect.top <= 300 && rect.top > maxTop) {
                         maxTop = rect.top;
-                        const match = NAV_LINKS.find(link => link.href === `#${section}`);
-                        if (match) currentTab = match.label as NavLabel;
+                        
+                        // Override currentTab to 'Features' for extra sections
+                        if (extraSections.includes(section)) {
+                            currentTab = 'Features';
+                        } else {
+                            const match = NAV_LINKS.find(link => link.href === `#${section}`);
+                            if (match) currentTab = match.label as NavLabel;
+                        }
                     }
                 }
             }

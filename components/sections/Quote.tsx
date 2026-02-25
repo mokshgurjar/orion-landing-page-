@@ -24,12 +24,12 @@ export default function Quote() {
             >
                 {/* quote text: display, 300, clamp(24px,4vw,44px), leading 1.4, max-w 800px, italic, mb 32px */}
                 <p className="font-display font-light text-[clamp(24px,4vw,44px)] leading-[1.4] max-w-[800px] mx-auto mb-[32px] italic text-text-DEFAULT">
-                    The same input on the same codebase always produces the same output — a property no other AI code editor today can claim.
+                    "The same input on the same codebase always produces the same output — a property no other AI code editor today can claim."
                 </p>
 
                 {/* quote attribution: mono, 12px, text-low, mb 40px */}
                 <p className="font-mono text-[12px] text-text-low mb-[40px]">
-                    — Early access developer, YC W25
+                    — Production Team, Orion
                 </p>
 
                 {/* Interactive Hover Button matching the site typography */}

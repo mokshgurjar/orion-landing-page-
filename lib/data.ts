@@ -37,49 +37,41 @@ export const VALIDATION_LAYERS: ValidationLayer[] = [
 
 export const FEATURES: Feature[] = [
     {
-        tag: 'World First',
         title: 'Deterministic Pipeline',
         desc: "Same prompt. Same codebase. Same output — byte for byte. Orion's 15-stage pipeline is fully deterministic: no randomness, no divergent outputs, no surprises. Verified nightly against 50 real projects.",
         vs: 'Antigravity, Cursor, Windsurf → non-deterministic',
     },
     {
-        tag: 'Unique to Orion',
         title: 'IISG — Intent Contracts',
         desc: 'The Intent-Interface Specification Generator creates formal contracts before a single line of code is written. Every agent is bound to these contracts. No agent can produce output that violates the intent you specified.',
         vs: 'No competitor → has formal pre-code contracts',
     },
     {
-        tag: 'Unique to Orion',
         title: '6-Layer Validation Gate',
         desc: 'Every change passes six independent layers — Syntax, Type, Security, Performance, Integration, and Formal Verification — before it can touch your filesystem. Not a suggestion. A hard gate.',
         vs: 'Others → 1–2 layer checks at most',
     },
     {
-        tag: 'Unique to Orion',
         title: 'Atomic Executor + Rollback',
         desc: 'Changes are applied transactionally — all or nothing. Every checkpoint is an immutable snapshot. Roll back to any point in history, instantly, with zero partial state corruption.',
         vs: 'Others → no transactional undo',
     },
     {
-        tag: 'Unique to Orion',
         title: 'Cost Preview',
         desc: 'Before any agent runs, Orion shows the estimated token cost of the task. Review it, adjust scope, then approve. No surprise bills. No invisible usage burning in the background.',
         vs: 'Antigravity, Cursor, Windsurf → no pre-execution cost view',
     },
     {
-        tag: 'Unique to Orion',
         title: 'Full AI Auditability',
         desc: 'Every decision every agent makes is logged, timestamped, and explainable. You can inspect the full reasoning chain behind every file change. Compliance-ready from day one.',
         vs: 'Others → black-box agent decisions',
     },
     {
-        tag: 'Unique to Orion',
         title: 'Planning Mode vs Fast Mode',
         desc: 'Planning Mode runs all 15 pipeline stages with full 6-layer validation, parallel agents, and IISG contracts. Fast Mode runs a 6-stage condensed pipeline in 4–10 seconds with a lighter model. You choose the mode. Orion never auto-switches.',
         vs: 'Others → one fixed execution path, no user-controlled mode switch',
     },
     {
-        tag: 'Unique to Orion',
         title: 'MCP Inside the Pipeline',
         desc: 'MCP tool calls are formally dispatched through a dedicated MCP Dispatcher with per-agent tool isolation, rollback-awareness, and full auditability. Tool calls are planned in the IISG contract and user-approved before any external system is touched.',
         vs: 'Antigravity + Claude Code → MCP is not integrated into the AI execution pipeline',

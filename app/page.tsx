@@ -47,6 +47,14 @@ export default function Home() {
       </LazySection>
 
       <LazySection fallback={<GenericSectionSkeleton />}>
+        <ExecutionModes />
+      </LazySection>
+
+      <LazySection fallback={<GenericSectionSkeleton />}>
+        <Mcp />
+      </LazySection>
+
+      <LazySection fallback={<GenericSectionSkeleton />}>
         <Reasons />
       </LazySection>
 
@@ -56,14 +64,6 @@ export default function Home() {
 
       <LazySection fallback={<GenericSectionSkeleton />}>
         <Validation />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <ExecutionModes />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <Mcp />
       </LazySection>
 
       <LazySection fallback={<CompareSkeleton />}>
