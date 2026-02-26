@@ -138,7 +138,7 @@ export default function Nav() {
 
                 {/* nav-cta */}
                 <Link
-                    href="#download"
+                    href="/auth"
                     style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '12px',
@@ -161,7 +161,7 @@ export default function Nav() {
                         e.currentTarget.style.color = 'var(--color-red-bright)'
                     }}
                 >
-                    Download Free
+                    Stay Informed
                 </Link>
             </div>
         </nav>
