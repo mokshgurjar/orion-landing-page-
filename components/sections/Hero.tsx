@@ -107,7 +107,7 @@ export default function Hero() {
 
                 {/* .btn-ghost */}
                 <a
-                    href="#features"
+                    href="/blog"
                     style={{
                         display: 'inline-flex',
                         alignItems: 'center',

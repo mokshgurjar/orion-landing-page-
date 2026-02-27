@@ -15,11 +15,7 @@ import {
 const Download = dynamic(() => import('@/components/sections/Download'));
 const TrustStrip = dynamic(() => import('@/components/sections/TrustStrip'));
 const Features = dynamic(() => import('@/components/sections/Features'));
-const Reasons = dynamic(() => import('@/components/sections/Reasons'));
-const Pipeline = dynamic(() => import('@/components/sections/Pipeline'));
 const Validation = dynamic(() => import('@/components/sections/Validation'));
-const ExecutionModes = dynamic(() => import('@/components/sections/ExecutionModes'));
-const Mcp = dynamic(() => import('@/components/sections/Mcp'));
 const Compare = dynamic(() => import('@/components/sections/Compare'));
 const Quote = dynamic(() => import('@/components/sections/Quote'));
 const Footer = dynamic(() => import('@/components/layout/Footer'));
@@ -31,9 +27,7 @@ export default function Home() {
       {/* Hero loads immediately */}
       <Hero />
       
-      {/* Lazily loaded sections below the fold. 
-          When scrolled backwards, they completely unmount into their fallbacks again! 
-      */}
+      {/* Lazily loaded sections below the fold. */}
       <LazySection fallback={<DownloadSkeleton />}>
         <Download />
       </LazySection>
@@ -44,22 +38,6 @@ export default function Home() {
 
       <LazySection fallback={<FeaturesSkeleton />}>
         <Features />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <ExecutionModes />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <Mcp />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <Reasons />
-      </LazySection>
-
-      <LazySection fallback={<GenericSectionSkeleton />}>
-        <Pipeline />
       </LazySection>
 
       <LazySection fallback={<GenericSectionSkeleton />}>

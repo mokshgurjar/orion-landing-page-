@@ -10,6 +10,7 @@ export interface ValidationLayer {
 }
 
 export interface Feature {
+    tag?: string
     title: string
     desc: string
     vs: string

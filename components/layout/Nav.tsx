@@ -16,7 +16,7 @@ export default function Nav() {
             setScrolled(window.scrollY > 60)
             
             // ScrollSpy logic mapping refs to sections
-            const navSections = NAV_LINKS.map(link => link.href.substring(1)).filter(Boolean); // e.g. 'features', 'pipeline', etc
+            const navSections = NAV_LINKS.map(link => link.href.split('#')[1]).filter(Boolean); // e.g. 'features', 'compare', etc
             const extraSections = ['execution-modes', 'mcp'];
             const allSections = [...navSections, ...extraSections];
             
@@ -35,7 +35,7 @@ export default function Nav() {
                         if (extraSections.includes(section)) {
                             currentTab = 'Features';
                         } else {
-                            const match = NAV_LINKS.find(link => link.href === `#${section}`);
+                            const match = NAV_LINKS.find(link => link.href === `/#${section}`);
                             if (match) currentTab = match.label as NavLabel;
                         }
                     }

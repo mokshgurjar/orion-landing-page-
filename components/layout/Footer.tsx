@@ -14,6 +14,7 @@ const FOOTER_LINKS = [
     { label: 'Docs', href: '#' },
     { label: 'GitHub', href: '#' },
     { label: 'Changelog', href: '#' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '#' },
 ] as const
 
