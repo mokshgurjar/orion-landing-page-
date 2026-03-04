@@ -63,13 +63,13 @@ export default function InteractiveFeatureGrid() {
 
   return (
     <div className="w-full mt-12 font-mono text-text-DEFAULT relative">
-      
+
       {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         {FEATURES.map((feature) => {
           const id = feature.title.toLowerCase().replace(/\s+/g, '-');
           const assets = featureAssets[feature.title] || {
-             icon: <Zap className="w-5 h-5" />
+            icon: <Zap className="w-5 h-5" />
           };
 
           return (
@@ -115,7 +115,7 @@ export default function InteractiveFeatureGrid() {
               if (id !== selectedId) return null;
 
               const assets = featureAssets[feature.title] || {
-                 icon: <Zap className="w-6 h-6" />
+                icon: <Zap className="w-6 h-6" />
               };
 
               return (
@@ -135,9 +135,9 @@ export default function InteractiveFeatureGrid() {
                       </motion.h3>
                     </div>
                   </div>
-                  
+
                   {/* Additional details that only appear in modal */}
-                  <motion.ul 
+                  <motion.ul
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
@@ -155,7 +155,7 @@ export default function InteractiveFeatureGrid() {
                   </motion.ul>
 
                   {/* Close button */}
-                  <button 
+                  <button
                     onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
                     className="absolute top-6 right-6 z-50 p-2 rounded-full bg-black/20 text-white/50 hover:text-white hover:bg-black/50 transition-colors backdrop-blur-md"
                   >

@@ -24,7 +24,7 @@ export default function Quote() {
             >
                 {/* quote text: display, 300, clamp(24px,4vw,44px), leading 1.4, max-w 800px, italic, mb 32px */}
                 <p className="font-display font-light text-[clamp(24px,4vw,44px)] leading-[1.4] max-w-[800px] mx-auto mb-[32px] italic text-text-DEFAULT">
-                    "The same input on the same codebase always produces the same output — a property no other AI code editor today can claim."
+                    &quot;The same input on the same codebase always produces the same output &mdash; a property no other AI code editor today can claim.&quot;
                 </p>
 
                 {/* quote attribution: mono, 12px, text-low, mb 40px */}

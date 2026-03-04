@@ -20,7 +20,7 @@ export default function Hero() {
         if (typeof navigator !== 'undefined') {
             let detected = 'Unknown'
             if ('userAgentData' in navigator) {
-                detected = (navigator as any).userAgentData?.platform || 'Unknown'
+                detected = (navigator as Navigator & { userAgentData?: { platform: string } }).userAgentData?.platform || 'Unknown'
             }
 
             if (detected === 'Unknown' || !detected) {
@@ -29,12 +29,12 @@ export default function Hero() {
                 else if (ua.includes('mac')) detected = 'macOS'
                 else if (ua.includes('linux')) detected = 'Linux'
             }
-            setOsName(detected)
+            setTimeout(() => setOsName(detected), 0)
         }
     }, [])
 
     let btnText = 'DOWNLOAD FOR FREE'
-    let btnHref = '/download'
+    const btnHref = '/download'
 
     if (osName) {
         const targetOS = osName.toLowerCase()
