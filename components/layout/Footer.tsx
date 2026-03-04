@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { ShootingStars } from '@/components/ui/shooting-stars'
+import { StarsBackground } from '@/components/ui/stars-background'
 
 // Original .footer: border-top 1px red-deep, padding 40px 0
 // .container: flex, align-items center, justify-content space-between
@@ -20,8 +22,12 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
     return (
-        <footer className="border-t border-red-deep py-[40px]">
-            <div className="w-[90%] max-w-[1200px] mx-auto flex items-center justify-between max-md:flex-col max-md:gap-[20px] max-md:text-center">
+        <footer className="relative border-t border-red-deep py-[40px] overflow-hidden">
+            <div className="absolute inset-0 z-0 bg-bg opacity-70">
+                <ShootingStars />
+                <StarsBackground />
+            </div>
+            <div className="relative z-10 w-[90%] max-w-[1200px] mx-auto flex items-center justify-between max-md:flex-col max-md:gap-[20px] max-md:text-center">
                 {/* footer-logo: display, weight 300, 22px */}
                 <div className="font-display font-light text-[22px] text-text-DEFAULT">
                     Orion<span className="text-red-bright">.</span>
