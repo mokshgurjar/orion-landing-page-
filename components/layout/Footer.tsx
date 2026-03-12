@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ShootingStars } from '@/components/ui/shooting-stars'
 import { StarsBackground } from '@/components/ui/stars-background'
+import OrionLogo from '@/components/ui/orion-logo'
 
 // Original .footer: border-top 1px red-deep, padding 40px 0
 // .container: flex, align-items center, justify-content space-between
@@ -28,10 +29,8 @@ export default function Footer() {
                 <StarsBackground />
             </div>
             <div className="relative z-10 w-[90%] max-w-[1200px] mx-auto flex items-center justify-between max-md:flex-col max-md:gap-[20px] max-md:text-center">
-                {/* footer-logo: display, weight 300, 22px */}
-                <div className="font-display font-light text-[22px] text-text-DEFAULT">
-                    Orion<span className="text-red-bright">.</span>
-                </div>
+                {/* footer-logo */}
+                <OrionLogo width={90} className="text-text-DEFAULT hover:text-red-bright transition-colors duration-300" />
 
                 {/* footer-links: gap 28px */}
                 <ul className="flex gap-[28px] list-none max-md:flex-wrap max-md:justify-center">

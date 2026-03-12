@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowLeft, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import OrionLogo from '@/components/ui/orion-logo'
 
 export default function AuthPage() {
     const [email, setEmail] = useState('')
@@ -96,18 +97,8 @@ export default function AuthPage() {
             >
                 {/* Logo */}
                 <div className="text-center mb-12">
-                     <Link
-                        href="/"
-                        style={{
-                            fontFamily: 'var(--font-display)',
-                            fontWeight: 300,
-                            fontSize: '42px',
-                            color: 'var(--color-text-DEFAULT)',
-                            letterSpacing: '0.02em',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        Orion<span style={{ color: 'var(--color-red-bright)' }}>.</span>
+                    <Link href="/" className="inline-flex items-center justify-center text-text-DEFAULT hover:text-red-bright transition-colors duration-300">
+                        <OrionLogo width={170} />
                     </Link>
                 </div>
 

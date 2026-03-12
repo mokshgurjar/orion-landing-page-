@@ -2,61 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { NAV_LINKS } from '@/lib/data'
+import OrionLogo from '@/components/ui/orion-logo'
 
 type NavLabel = typeof NAV_LINKS[number]['label'];
 
 export default function Nav() {
     const [scrolled, setScrolled] = useState(false)
-    const [activeTab, setActiveTab] = useState<NavLabel>(NAV_LINKS[0].label)
+    const pathname = usePathname()
+
+    // Derive active tab from current route
+    const activeTab = (NAV_LINKS.find(link => link.href === pathname)?.label ?? NAV_LINKS[0].label) as NavLabel
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 60)
-            
-            // ScrollSpy logic mapping refs to sections
-            const navSections = NAV_LINKS.map(link => link.href.split('#')[1]).filter(Boolean); // e.g. 'features', 'compare', etc
-            const extraSections = ['execution-modes', 'mcp'];
-            const allSections = [...navSections, ...extraSections];
-            
-            let maxTop = -Infinity;
-            let currentTab: NavLabel | null = null;
-
-            for (const section of allSections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    // Find the section whose top is closest to the 300px threshold (without going strictly below it).
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 300 && rect.top > maxTop) {
-                        maxTop = rect.top;
-                        
-                        // Override currentTab to 'Features' for extra sections
-                        if (extraSections.includes(section)) {
-                            currentTab = 'Features';
-                        } else {
-                            const match = NAV_LINKS.find(link => link.href === `/#${section}`);
-                            if (match) currentTab = match.label as NavLabel;
-                        }
-                    }
-                }
-            }
-            
-            // If we're at or near the very top of the page (e.g., above the feature section), lock to Home
-            if (window.scrollY < 400) {
-                currentTab = NAV_LINKS[0].label; // "Home"
-            } else if (!currentTab) {
-                currentTab = NAV_LINKS[0].label;
-            }
-            
-            setActiveTab(prev => currentTab ? currentTab : prev);
-        }
-
-        // Add scroll listener
+        const handleScroll = () => setScrolled(window.scrollY > 60)
         window.addEventListener('scroll', handleScroll, { passive: true })
-        // Trigger once on mount to set initial correct tab if loaded mid-page
-        handleScroll();
-        
+        handleScroll()
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
@@ -89,16 +52,10 @@ export default function Nav() {
                 {/* nav-logo */}
                 <Link
                     href="#"
-                    style={{
-                        fontFamily: 'var(--font-display)',
-                        fontWeight: 300,
-                        fontSize: '26px',
-                        color: 'var(--color-text-DEFAULT)',
-                        letterSpacing: '0.02em',
-                        textDecoration: 'none',
-                    }}
+                    style={{ color: 'var(--color-text-DEFAULT)', display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+                    className="hover:text-red-bright transition-colors duration-300"
                 >
-                    Orion<span style={{ color: 'var(--color-red-bright)' }}>.</span>
+                    <OrionLogo width={110} />
                 </Link>
 
                 {/* nav-links */}
@@ -110,7 +67,6 @@ export default function Nav() {
                             <li key={link.href} className="relative">
                                 <Link
                                     href={link.href}
-                                    onClick={() => setActiveTab(link.label)}
                                     className={`relative px-1 py-4 font-ui text-[12px] uppercase tracking-[0.08em] transition-colors outline-none block ${
                                         isActive ? "text-text-DEFAULT" : "text-text-mid hover:text-text-DEFAULT"
                                     }`}

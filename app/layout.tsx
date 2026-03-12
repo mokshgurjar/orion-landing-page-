@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
+import { Playfair_Display, Inter, JetBrains_Mono, Tenor_Sans, Space_Mono } from 'next/font/google'
 import Script from 'next/script'
 import GrainOverlay from '@/components/ui/GrainOverlay'
 import CursorWrapper from '@/components/ui/CursorWrapper'
@@ -20,6 +20,20 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains',
+  display: 'swap',
+})
+
+const tenorSans = Tenor_Sans({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-tenor',
+  display: 'swap',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
   display: 'swap',
 })
 
@@ -49,7 +63,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable} ${tenorSans.variable} ${spaceMono.variable} antialiased`}>
         <GrainOverlay />
         <CursorWrapper />
         {children}

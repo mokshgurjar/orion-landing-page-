@@ -9,8 +9,6 @@ import {
     Gauge,
     Zap,
     Variable,
-    CheckCircle2,
-    ChevronRight,
 } from 'lucide-react'
 import SectionEyebrow from '@/components/ui/SectionEyebrow'
 import SectionTitle from '@/components/ui/SectionTitle'
@@ -295,20 +293,6 @@ export default function Validation() {
                     />
                 </div>
 
-                {/* Footer CTA */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, ease: easeOut }}
-                    className="mt-24 text-center"
-                >
-                    <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-[#2a1414] text-text-mid font-mono text-[11px] uppercase tracking-[0.12em] hover:text-text transition-colors cursor-pointer group">
-                        <CheckCircle2 className="w-4 h-4 text-red-core" />
-                        <span>Deployment Ready — Pipeline Verified</span>
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                </motion.div>
             </div>
         </section>
     )
