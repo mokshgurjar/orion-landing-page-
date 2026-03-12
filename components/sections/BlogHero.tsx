@@ -67,20 +67,20 @@ export default function BlogHero() {
                 {/* Main heading */}
                 <motion.h1 
                     variants={itemVariants}
-                    className="font-display font-light text-balance text-[clamp(40px,6vw,80px)] leading-[1.05] tracking-tight mb-8 text-text-DEFAULT text-glow-red"
+                    className="text-glow-red"
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontWeight: 300,
+                        fontSize: 'clamp(72px, 5vw, 80px)',
+                        lineHeight: 1.05,
+                        marginBottom: '52px',
+                        position: 'relative',
+                        zIndex: 1,
+                    }}
                 >
-                    See how Orion{' '}
-                    <span 
-                        className="text-gradient-red"
-                        style={{ 
-                            fontStyle: 'italic', 
-                            fontFamily: 'var(--font-display)', 
-                            display: 'inline-block',
-                            paddingRight: '0.15em',
-                            paddingBottom: '0.1em',
-                        }}
-                    >
-                        actually
+                    See how {' '}
+                    <span className="text-gradient-red" style={{ fontStyle: 'italic', fontFamily: 'var(--font-display)', display: 'inline-block' }}>
+                        Orion
                     </span>{' '}
                     works.
                 </motion.h1>

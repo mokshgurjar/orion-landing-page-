@@ -139,12 +139,12 @@ export default function Pipeline() {
                                     transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
                                 />
                                 <div
-                                    className="w-[72px] h-[72px] rounded-full border border-red-900/50 bg-black/80 flex items-center justify-center"
-                                    style={{ boxShadow: '0 0 50px rgba(192,40,42,0.3), inset 0 0 20px rgba(0,0,0,0.8)' }}
+                                    className="w-[80px] h-[80px] rounded-full border border-red-900/50 bg-black/80 flex items-center justify-center"
+                                    style={{ boxShadow: '0 0 60px rgba(192,40,42,0.4), inset 0 0 20px rgba(0,0,0,0.8)' }}
                                 >
-                                    <Database size={28} strokeWidth={1.2} className="text-red-500" />
+                                    <Database size={32} strokeWidth={1.2} className="text-red-500" />
                                 </div>
-                                <span className="text-[9px] tracking-[0.3em] uppercase text-white/25 font-mono mt-1 w-max">
+                                <span className="text-[11px] tracking-[0.3em] uppercase text-white/80 font-mono mt-2 w-max font-medium">
                                     Orion Core
                                 </span>
                             </div>
@@ -169,10 +169,10 @@ export default function Pipeline() {
                                         style={{
                                             left: `calc(50% + ${x}px)`,
                                             top: `calc(50% + ${y}px)`,
-                                            marginLeft: '-20px', // Exact center offsets
-                                            marginTop: '-20px',  // Exact center offsets
-                                            width: '40px',
-                                            height: '40px'
+                                            marginLeft: '-26px', // Exact center offsets
+                                            marginTop: '-26px',  // Exact center offsets
+                                            width: '52px',
+                                            height: '52px'
                                         }}
                                         onHoverStart={() => setHoveredNode(node.id)}
                                         onHoverEnd={() => setHoveredNode(null)}
@@ -191,11 +191,11 @@ export default function Pipeline() {
                                             animate={isAct ? { scale: [1, 1.12, 1] } : { scale: 1 }}
                                             transition={{ duration: 0.7 }}
                                         >
-                                            <Icon size={16} strokeWidth={2} />
+                                            <Icon size={24} strokeWidth={2} />
 
                                             {/* ID Badge circle (01, 02...) */}
                                             <div
-                                                className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-mono font-bold bg-black border"
+                                                className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold bg-black border"
                                                 style={{
                                                     borderColor: lit ? node.color : 'rgba(255,255,255,0.15)',
                                                     color: lit ? node.color : 'rgba(255,255,255,0.3)',
@@ -224,19 +224,19 @@ export default function Pipeline() {
                                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                                     exit={{ opacity: 0, scale: 0.94 }}
                                                     transition={{ duration: 0.18 }}
-                                                    className={`absolute top-1/2 -translate-y-1/2 w-48 pointer-events-none z-30 ${isRight ? 'left-full ml-4' : 'right-full mr-4 text-right'}`}
+                                                    className={`absolute top-1/2 -translate-y-1/2 w-[220px] pointer-events-none z-30 ${isRight ? 'left-full ml-5' : 'right-full mr-5 text-right'}`}
                                                 >
                                                     <div
-                                                        className="px-3 py-2.5 rounded-xl border bg-black/95 backdrop-blur-md shadow-2xl"
+                                                        className="px-4 py-3.5 rounded-xl border bg-black/95 backdrop-blur-md shadow-2xl"
                                                         style={{ borderColor: `${node.color}30` }}
                                                     >
                                                         <p
-                                                            className="text-[10px] font-bold tracking-wider font-mono uppercase"
+                                                            className="text-[11px] font-bold tracking-wider font-mono uppercase"
                                                             style={{ color: node.color }}
                                                         >
                                                             {String(node.id).padStart(2, '0')} — {node.title}
                                                         </p>
-                                                        <p className="text-[10px] text-white/40 mt-1 leading-relaxed font-mono">
+                                                        <p className="text-[11px] text-white/50 mt-1.5 leading-relaxed font-mono">
                                                             {node.desc}
                                                         </p>
                                                     </div>

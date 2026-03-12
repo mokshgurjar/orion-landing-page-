@@ -1,15 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowLeft, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type AuthMode = 'signin' | 'signup' | 'subscribe';
-
 export default function AuthPage() {
-    const [mode, setMode] = useState<AuthMode>('signin')
     const [email, setEmail] = useState('')
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
@@ -54,13 +51,8 @@ export default function AuthPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (mode === 'subscribe') {
-            handleSubscribe();
-        } else {
-            // Handle actual sign in/up logic when ready
-        }
+        handleSubscribe();
     };
-
 
     return (
         <div className="min-h-screen bg-bg text-text-DEFAULT flex flex-col items-center justify-center p-4 relative overflow-hidden">
@@ -128,37 +120,15 @@ export default function AuthPage() {
                     <div className="flex justify-between items-end mb-8">
                         <div>
                             <h1 className="font-display text-3xl font-light mb-2">
-                                {mode === 'signin' ? 'Welcome Back' : mode === 'signup' ? 'Join Orion' : 'Stay Informed'}
+                                Stay Informed
                             </h1>
                             <p className="font-ui text-xs text-text-mid uppercase tracking-widest">
-                                {mode === 'signin' ? 'Enter the system' : mode === 'signup' ? 'Request access' : 'Join the newsletter'}
+                                Join the newsletter
                             </p>
                         </div>
                     </div>
 
                     <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                        
-                        <AnimatePresence mode="popLayout">
-                            {mode === 'signup' && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                                    animate={{ opacity: 1, height: 'auto', marginBottom: 24 }}
-                                    exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                    className="space-y-2 overflow-hidden"
-                                >
-                                    <label htmlFor="name" className="block font-ui text-[10px] text-text-mid uppercase tracking-widest ml-1">
-                                        Full Name
-                                    </label>
-                                    <input 
-                                        type="text" 
-                                        id="name"
-                                        placeholder="John Doe"
-                                        className="w-full bg-[#030101] border border-white/10 rounded-xl px-4 py-3 min-h-[52px] text-sm text-text-DEFAULT placeholder:text-text-low focus:outline-none focus:border-red-core/50 focus:bg-black transition-colors font-ui"
-                                    />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
 
                         <div className="space-y-2">
                             <label htmlFor="email" className="block font-ui text-[10px] text-text-mid uppercase tracking-widest ml-1">
@@ -181,34 +151,13 @@ export default function AuthPage() {
                                     {errorMessage}
                                 </p>
                             )}
-                            {status === 'success' && mode === 'subscribe' && (
+                            {status === 'success' && (
                                 <p className="text-green-500 text-xs font-ui mt-2 ml-1 flex items-center gap-1">
                                     <CheckCircle2 className="w-3 h-3" />
                                     Subscribed! Check your email.
                                 </p>
                             )}
                         </div>
-
-                        {mode !== 'subscribe' && (
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center ml-1">
-                                    <label htmlFor="password" className="block font-ui text-[10px] text-text-mid uppercase tracking-widest">
-                                        Password
-                                    </label>
-                                    {mode === 'signin' && (
-                                        <a href="#" className="font-ui text-[10px] text-red-core hover:text-red-bright transition-colors uppercase tracking-widest">
-                                            Forgot?
-                                        </a>
-                                    )}
-                                </div>
-                                <input 
-                                    type="password" 
-                                    id="password"
-                                    placeholder="••••••••"
-                                    className="w-full bg-[#030101] border border-white/10 rounded-xl px-4 py-3 min-h-[52px] text-sm text-text-DEFAULT placeholder:text-text-low focus:outline-none focus:border-red-core/50 focus:bg-black transition-colors tracking-widest font-ui"
-                                />
-                            </div>
-                        )}
 
                         <div className="pt-4">
                             <button 
@@ -220,11 +169,11 @@ export default function AuthPage() {
                                     {status === 'loading' ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            {mode === 'subscribe' ? 'Subscribing...' : 'Processing...'}
+                                            Subscribing...
                                         </>
                                     ) : (
                                         <>
-                                            {mode === 'signin' ? 'Sign In' : mode === 'signup' ? 'Create Account' : 'Subscribe'}
+                                            Subscribe
                                             <span className="group-hover:translate-x-1 transition-transform">→</span>
                                         </>
                                     )}
@@ -233,29 +182,6 @@ export default function AuthPage() {
                             </button>
                         </div>
                     </form>
-
-                    <div className="mt-8 text-center flex flex-col gap-2">
-                        {mode !== 'subscribe' && (
-                            <p className="font-ui text-[11px] text-text-mid">
-                                {mode === 'signin' ? "Don't have an account?" : "Already have an account?"}
-                                <button 
-                                    onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
-                                    className="ml-2 text-text-DEFAULT hover:text-red-bright transition-colors uppercase tracking-wide focus:outline-none"
-                                >
-                                    {mode === 'signin' ? 'Sign Up' : 'Sign In'}
-                                </button>
-                            </p>
-                        )}
-                        <p className="font-ui text-[11px] text-text-mid">
-                            {mode === 'subscribe' ? "Actually want to sign in?" : "Just looking for updates?"}
-                            <button 
-                                onClick={() => setMode(mode === 'subscribe' ? 'signin' : 'subscribe')}
-                                className="ml-2 text-text-DEFAULT hover:text-red-bright transition-colors uppercase tracking-wide focus:outline-none"
-                            >
-                                {mode === 'subscribe' ? 'Go to Login' : 'Subscribe to Newsletter'}
-                            </button>
-                        </p>
-                    </div>
                 </div>
 
                 {/* Footer text */}

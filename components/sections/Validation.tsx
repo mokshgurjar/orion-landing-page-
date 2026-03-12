@@ -138,14 +138,23 @@ function IsometricStair({ active }: { active: boolean }) {
 
 export default function Validation() {
     const [activeStep, setActiveStep] = useState(0)
+    const userSelectedRef = React.useRef(false)
+    const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null)
+
+    const startCycle = React.useCallback(() => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        intervalRef.current = setInterval(() => {
+            if (!userSelectedRef.current) {
+                setActiveStep((prev) => (prev + 1) % steps.length)
+            }
+        }, 2500)
+    }, [])
 
     // Auto-cycle through steps with delay
     useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveStep((prev) => (prev + 1) % steps.length)
-        }, 2500)
-        return () => clearInterval(interval)
-    }, [])
+        startCycle()
+        return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    }, [startCycle])
 
     // Display steps in ascending order (1 at top, 6 at bottom)
     const displaySteps = [...steps]
@@ -181,7 +190,13 @@ export default function Validation() {
                                 viewport={{ once: true, margin: '-40px' }}
                                 transition={{ duration: 0.6, delay: index * 0.12, ease: easeOut }}
                                 className="relative flex flex-col md:flex-row md:items-center md:justify-center w-full max-w-4xl gap-6 md:gap-0"
-                                onMouseEnter={() => setActiveStep(originalIndex)}
+                                onMouseEnter={() => {
+                                    userSelectedRef.current = true
+                                    setActiveStep(originalIndex)
+                                }}
+                                onMouseLeave={() => {
+                                    userSelectedRef.current = false
+                                }}
                             >
                                 {/* Platform & Icon (Center) */}
                                 <div className="relative shrink-0 z-10 mx-auto scale-100 md:scale-110 transition-transform duration-700">
