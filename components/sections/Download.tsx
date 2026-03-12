@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { PLATFORMS } from '@/lib/data'
 import SectionEyebrow from '@/components/ui/SectionEyebrow'
 import Image from 'next/image'
@@ -101,10 +101,9 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
 export default function Download() {
-    const orderedPlatforms = useMemo(() => {
-        // Run safely only on client side
-        if (typeof window === 'undefined') return PLATFORMS;
+    const [orderedPlatforms, setOrderedPlatforms] = useState(PLATFORMS)
 
+    useEffect(() => {
         const userAgent = window.navigator.userAgent.toLowerCase()
         let detectedOS = ''
 
@@ -121,15 +120,19 @@ export default function Download() {
             const otherPlatforms = PLATFORMS.filter(p => p.os !== detectedOS)
 
             if (detectedPlatform && otherPlatforms.length === 2) {
-                return [
+                const newOrder = [
                     otherPlatforms[0],
                     detectedPlatform,
                     otherPlatforms[1]
                 ]
+                // Use setTimeout to avoid synchronous setState within the effect
+                if (newOrder[1].os !== PLATFORMS[1].os) {
+                    setTimeout(() => {
+                        setOrderedPlatforms(newOrder)
+                    }, 0)
+                }
             }
         }
-
-        return PLATFORMS;
     }, [])
 
     return (

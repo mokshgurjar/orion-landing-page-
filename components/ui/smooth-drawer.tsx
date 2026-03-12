@@ -78,7 +78,27 @@ export default function SmoothDrawer({
         <Drawer>
             <DrawerTrigger asChild>
                 <button
-                    className="w-auto px-8 py-[14px] border border-red-core text-red-bright font-ui text-[13px] uppercase tracking-[0.06em] bg-transparent hover:border-transparent hover:bg-white/5 hover:text-text-DEFAULT transition-all rounded-full cursor-pointer relative z-10"
+                    className="w-auto px-8 py-[14px] font-ui text-[13px] uppercase tracking-[0.06em] cursor-pointer relative z-10"
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid var(--color-red-core)',
+                        color: 'var(--color-red-bright)',
+                        transition: 'background 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.2s ease-in-out',
+                        borderRadius: '100px',
+                        background: 'transparent',
+                    }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.background = 'var(--color-red-core)'
+                        e.currentTarget.style.color = 'var(--color-text-DEFAULT)'
+                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.background = 'transparent'
+                        e.currentTarget.style.color = 'var(--color-red-bright)'
+                        e.currentTarget.style.borderColor = 'var(--color-red-core)'
+                    }}
                 >
                     {triggerText}
                 </button>
