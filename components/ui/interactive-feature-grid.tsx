@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 
 const springTransition = {
   type: "spring" as const,
